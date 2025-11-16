@@ -1,0 +1,31 @@
+---
+import App from '../../App';
+import '../styles/tailwind.css';
+---
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agenda Cultural</title>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <script>
+      (function(){
+        try {
+          var t = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var useDark = t ? (t === 'dark') : prefersDark;
+          var root = document.documentElement;
+          root.classList.remove('light','dark');
+          root.classList.add(useDark ? 'dark' : 'light');
+        } catch (e) {}
+      })();
+    </script>
+    <style>
+      :root { font-family: Inter, sans-serif; }
+    </style>
+  </head>
+  <body>
+    <App client:only="react" />
+  </body>
+</html>
