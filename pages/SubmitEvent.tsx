@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SubmitEvent: React.FC = () => {
-  const googleFormUrl = "https://docs.google.com/forms"; // Placeholder URL
+  const googleFormUrl = "https://forms.gle/ikQqPRAmayg2PhKA9";
 
   return (
     <div className="max-w-4xl mx-auto text-center bg-white dark:bg-neutral-dark p-8 md:p-12 rounded-lg shadow-xl">
