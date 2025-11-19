@@ -55,12 +55,6 @@ const EventDetail: React.FC = () => {
           <h2 className="text-2xl font-bold text-neutral-darkest dark:text-white border-b-2 border-brand-primary pb-2 mb-4">Sobre o Evento</h2>
           <p>{event.description}</p>
           
-          <h2 className="text-2xl font-bold text-neutral-darkest dark:text-white border-b-2 border-brand-primary pb-2 mt-8 mb-4">Agenda / Programação</h2>
-          <ul className="list-disc pl-5 space-y-2">
-            {event.agenda.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
         </div>
       </div>
     </div>

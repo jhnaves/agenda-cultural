@@ -8,4 +8,8 @@ export interface EventType {
   description: string;
   agenda: string[];
   image: string;
+  responsibleName?: string;
+  contactPhone?: string;
+  contactEmail?: string;
+  website?: string;
 }

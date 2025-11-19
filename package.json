@@ -7,8 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "preastro:dev": "node scripts/fetch-sheet.mjs",
     "astro:dev": "astro dev",
     "astro:build": "astro build",
+    "preastro:build": "node scripts/fetch-sheet.mjs",
     "astro:preview": "astro preview",
     "pwa:icons": "node scripts/generate-icons.mjs"
   },
