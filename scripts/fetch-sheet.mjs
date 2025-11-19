@@ -43,17 +43,18 @@ const normalize = (s) => (s ?? '')
 
 const parseDate = (v) => {
   const s = unquote(v)
-  const iso = new Date(s)
-  if (!Number.isNaN(iso.getTime())) return iso.toISOString()
+  const isoTry = new Date(s)
+  if (!Number.isNaN(isoTry.getTime())) return isoTry.toISOString()
   const m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/)
   if (m) {
     const dd = parseInt(m[1], 10)
-    const mm = parseInt(m[2], 10) - 1
+    const mm = parseInt(m[2], 10)
     const yyyy = parseInt(m[3].length === 2 ? `20${m[3]}` : m[3], 10)
     const HH = m[4] ? parseInt(m[4], 10) : 0
-    const MM = m[5] ? parseInt(m[5], 10) : 0
+    const MN = m[5] ? parseInt(m[5], 10) : 0
     const SS = m[6] ? parseInt(m[6], 10) : 0
-    return new Date(yyyy, mm, dd, HH, MM, SS).toISOString()
+    const isoStr = `${String(yyyy)}-${String(mm).padStart(2,'0')}-${String(dd).padStart(2,'0')}T${String(HH).padStart(2,'0')}:${String(MN).padStart(2,'0')}:${String(SS).padStart(2,'0')}-03:00`
+    return new Date(isoStr).toISOString()
   }
   return new Date().toISOString()
 }
