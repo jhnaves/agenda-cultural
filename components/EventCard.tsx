@@ -13,6 +13,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
+      timeZone: 'America/Sao_Paulo'
     }).format(date);
   };
 
@@ -20,6 +21,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
     return new Intl.DateTimeFormat('pt-BR', {
       hour: '2-digit',
       minute: '2-digit',
+      timeZone: 'America/Sao_Paulo'
     }).format(date);
   };
 

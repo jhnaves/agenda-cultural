@@ -21,13 +21,13 @@ const EventDetail: React.FC = () => {
   }
 
   const formatDateRange = (start: Date, end: Date) => {
-    const startDate = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }).format(start);
-    const endDate = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }).format(end);
+    const startDate = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' }).format(start);
+    const endDate = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' }).format(end);
     return startDate === endDate ? startDate : `${startDate} a ${endDate}`;
   };
 
   const formatTime = (date: Date) => {
-    return new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' }).format(date);
+    return new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo' }).format(date);
   };
 
   return (
