@@ -12,5 +12,19 @@
     "contactPhone": "+55(35)9994-4406",
     "contactEmail": "",
     "website": "https://www.youtube.com/@camaraguaxupe"
+  },
+  {
+    "id": "2",
+    "title": "Natal de Luz de Guaxupé 2025 - Abertura",
+    "startDate": "2025-11-22T21:00:00.000Z",
+    "endDate": "2025-11-22T22:00:00.000Z",
+    "location": "Estação Cultural - Av. Felipe Elías Zeitune, 400 - Centro, Guaxupé - MG",
+    "description": "Solenidade de abertura e primeiro encontro de coros infanto-juvenil de Guaxupé",
+    "agenda": [],
+    "image": "http://localhost:4321/images/2025/11/natal_de_luz.jpg",
+    "responsibleName": "José Henrique",
+    "contactPhone": "",
+    "contactEmail": "",
+    "website": "https://www.guaxupe.mg.gov.br/cidade/natal-de-luz"
   }
 ]
