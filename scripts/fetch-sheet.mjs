@@ -15,7 +15,7 @@ const parseCSV = (text) => {
   let inQuotes = false
   for (let i = 0; i < text.length; i++) {
     const ch = text[i]
-    const next = text[i+1]
+    const next = text[i + 1]
     if (inQuotes) {
       if (ch === '"' && next === '"') { field += '"'; i++; continue }
       if (ch === '"') { inQuotes = false; continue }
@@ -43,8 +43,6 @@ const normalize = (s) => (s ?? '')
 
 const parseDate = (v) => {
   const s = unquote(v)
-  const isoTry = new Date(s)
-  if (!Number.isNaN(isoTry.getTime())) return isoTry.toISOString()
   const m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/)
   if (m) {
     const dd = parseInt(m[1], 10)
@@ -53,9 +51,11 @@ const parseDate = (v) => {
     const HH = m[4] ? parseInt(m[4], 10) : 0
     const MN = m[5] ? parseInt(m[5], 10) : 0
     const SS = m[6] ? parseInt(m[6], 10) : 0
-    const isoStr = `${String(yyyy)}-${String(mm).padStart(2,'0')}-${String(dd).padStart(2,'0')}T${String(HH).padStart(2,'0')}:${String(MN).padStart(2,'0')}:${String(SS).padStart(2,'0')}-03:00`
+    const isoStr = `${String(yyyy)}-${String(mm).padStart(2, '0')}-${String(dd).padStart(2, '0')}T${String(HH).padStart(2, '0')}:${String(MN).padStart(2, '0')}:${String(SS).padStart(2, '0')}-03:00`
     return new Date(isoStr).toISOString()
   }
+  const isoTry = new Date(s)
+  if (!Number.isNaN(isoTry.getTime())) return isoTry.toISOString()
   return new Date().toISOString()
 }
 
@@ -67,10 +67,10 @@ const toEvents = (csvText) => {
   const iId = idx(['timestamp'])
   const iTitle = idx(['digite-o-nome-do-evento'])
   const iStart = idx(['data-de-inicio'])
-  const iEnd = idx(['data-de-encerramento','data-de-termino'])
+  const iEnd = idx(['data-de-encerramento', 'data-de-termino'])
   const iLoc = idx(['local-do-evento'])
   const iDesc = idx(['descricao-do-evento'])
-  const iAgenda = idx(['agenda','programacao','itinerario'])
+  const iAgenda = idx(['agenda', 'programacao', 'itinerario'])
   const iResp = idx(['nome-do-responsavel'])
   const iPhone = idx(['telefone-de-contato-whatsapp'])
   const iEmail = idx(['e-mail-de-contato'])

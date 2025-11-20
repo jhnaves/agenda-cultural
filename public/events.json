@@ -26,5 +26,47 @@
     "contactPhone": "",
     "contactEmail": "",
     "website": "https://www.guaxupe.mg.gov.br/cidade/natal-de-luz"
+  },
+  {
+    "id": "3",
+    "title": "Carreata de Abertura - Natal de Luz de Guaxupé 2025",
+    "startDate": "2025-11-29T21:30:00.000Z",
+    "endDate": "2025-11-29T23:00:00.000Z",
+    "location": "Praça de Santa Cruz",
+    "description": "Carreata de abertura e parada de Natal na Av. Conde Ribeiro do Valle",
+    "agenda": [],
+    "image": "https://agenda-cultural.com/images/2025/11/natal_de_luz.jpg",
+    "responsibleName": "José Henrique",
+    "contactPhone": "",
+    "contactEmail": "",
+    "website": "https://www.guaxupe.mg.gov.br/cidade/natal-de-luz"
+  },
+  {
+    "id": "4",
+    "title": "Natal de Luz de Guaxupé 2025 - Parada de Natal",
+    "startDate": "2025-11-30T23:00:00.000Z",
+    "endDate": "2025-12-01T00:00:00.000Z",
+    "location": "Av. Dona Floriana",
+    "description": "Parada de Natal",
+    "agenda": [],
+    "image": "https://agenda-cultural.com/images/2025/11/natal_de_luz.jpg",
+    "responsibleName": "José Henrique",
+    "contactPhone": "",
+    "contactEmail": "",
+    "website": "https://www.guaxupe.mg.gov.br/cidade/natal-de-luz"
+  },
+  {
+    "id": "5",
+    "title": "Natal de Luz de Guaxupé 2025 - Parada de Natal",
+    "startDate": "2025-12-06T23:00:00.000Z",
+    "endDate": "2025-12-07T00:00:00.000Z",
+    "location": "CIEG (Rua Nova Resende, 180, Parque Dos Municípios II)",
+    "description": "Parada de Natal",
+    "agenda": [],
+    "image": "https://agenda-cultural.com/images/2025/11/natal_de_luz.jpg",
+    "responsibleName": "José Henrique",
+    "contactPhone": "",
+    "contactEmail": "",
+    "website": "https://www.guaxupe.mg.gov.br/cidade/natal-de-luz"
   }
 ]
