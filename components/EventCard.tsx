@@ -41,7 +41,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
               <span>{formatTime(event.startDate)} - {formatTime(event.endDate)}</span>
             </div>
             <div className="flex items-center gap-2">
-              <LocationMarkerIcon className="w-5 h-5 text-brand-primary dark:text-brand-accent" />
+              <LocationMarkerIcon className="w-6 h-6 text-brand-primary dark:text-brand-accent" />
               <span className="truncate">{event.location}</span>
             </div>
           </div>
