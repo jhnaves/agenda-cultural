@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useEvents } from '../hooks/useEvents';
-import { CalendarIcon, ClockIcon, LocationMarkerIcon } from '../components/IconComponents';
+import { CalendarIcon, ClockIcon, LocationMarkerIcon, WhatsAppIcon } from '../components/IconComponents';
 
 const EventDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,7 +35,7 @@ const EventDetail: React.FC = () => {
       <img className="w-full h-64 md:h-96 object-cover" src={event.image} alt={event.title} />
       <div className="p-6 md:p-10">
         <h1 className="text-4xl md:text-5xl font-extrabold text-neutral-darkest dark:text-white mb-4">{event.title}</h1>
-        
+
         <div className="flex flex-wrap gap-x-8 gap-y-4 mb-8 text-gray-700 dark:text-neutral-light">
           <div className="flex items-center gap-3">
             <CalendarIcon className="w-6 h-6 text-brand-primary dark:text-brand-accent" />
@@ -54,7 +54,19 @@ const EventDetail: React.FC = () => {
         <div className="prose prose-lg max-w-none dark:prose-invert text-gray-700 dark:text-neutral-light/90 leading-relaxed">
           <h2 className="text-2xl font-bold text-neutral-darkest dark:text-white border-b-2 border-brand-primary pb-2 mb-4">Sobre o Evento</h2>
           <p>{event.description}</p>
-          
+
+        </div>
+
+        <div className="mt-8 pt-6 border-t border-gray-200 dark:border-neutral-light/20">
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(`*${event.title}*\n\uD83D\uDCC5 ${formatDateRange(event.startDate, event.endDate)}\n\uD83D\uDCCD ${event.location}\n\nConfira mais detalhes: ${window.location.href}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg"
+          >
+            <WhatsAppIcon className="w-6 h-6" />
+            Compartilhar no WhatsApp
+          </a>
         </div>
       </div>
     </div>
