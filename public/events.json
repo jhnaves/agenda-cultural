@@ -68,5 +68,19 @@
     "contactPhone": "",
     "contactEmail": "",
     "website": "https://www.guaxupe.mg.gov.br/cidade/natal-de-luz"
+  },
+  {
+    "id": "6",
+    "title": "Feira Noturna de Guaxupé",
+    "startDate": "2025-11-26T20:00:00.000Z",
+    "endDate": "2025-11-26T21:30:00.000Z",
+    "location": "Praça da Saudade",
+    "description": "Uma noite de muita alegria e sabores, dia 26 de novembro, a partir das 17h, na Praça da Saudade.",
+    "agenda": [],
+    "image": "https://agenda-cultural.com/images/2025/11/FERNOIT.jpg",
+    "responsibleName": "Prefeitura de Guaxupé",
+    "contactPhone": "",
+    "contactEmail": "",
+    "website": "https://www.instagram.com/prefguaxupe/p/DRek12mknqU/"
   }
 ]
