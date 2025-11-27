@@ -3,6 +3,17 @@ import path from 'node:path';
 import { type EventType } from '../../types';
 
 
+function createSlug(title: string): string {
+    return title
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-+|-+$/g, '');
+}
+
 export async function getEvents(): Promise<EventType[]> {
     try {
         const filePath = path.join(process.cwd(), 'public', 'events.json');
@@ -12,6 +23,7 @@ export async function getEvents(): Promise<EventType[]> {
         return Array.isArray(raw)
             ? raw.map((e: any) => ({
                 id: String(e.id ?? ''),
+                slug: createSlug(String(e.title ?? '')) + '.htm',
                 title: String(e.title ?? ''),
                 startDate: new Date(e.startDate),
                 endDate: new Date(e.endDate ?? e.startDate),
@@ -45,6 +57,11 @@ export async function getPastEvents(): Promise<EventType[]> {
     return events
         .filter(event => event.endDate < now)
         .sort((a, b) => b.startDate.getTime() - a.startDate.getTime());
+}
+
+export async function getEventBySlug(slug: string): Promise<EventType | undefined> {
+    const events = await getEvents();
+    return events.find(event => event.slug === slug);
 }
 
 export async function getEventById(id: string): Promise<EventType | undefined> {

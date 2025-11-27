@@ -4,9 +4,10 @@ import { EventType } from '../types';
 
 interface EventDetailProps {
   event: EventType | undefined;
+  currentUrl?: string;
 }
 
-const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
+const EventDetail: React.FC<EventDetailProps> = ({ event, currentUrl }) => {
   if (!event) {
     return (
       <div className="text-center py-20">
@@ -28,6 +29,8 @@ const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
   const formatTime = (date: Date) => {
     return new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo' }).format(date);
   };
+
+  const shareUrl = currentUrl || (typeof window !== 'undefined' ? window.location.href : '');
 
   return (
     <div className="bg-white dark:bg-neutral-dark rounded-lg shadow-2xl overflow-hidden">
@@ -58,7 +61,7 @@ const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
 
         <div className="mt-8 pt-6 border-t border-gray-200 dark:border-neutral-light/20">
           <a
-            href={`https://wa.me/?text=${encodeURIComponent(`*${event.title}*\n\uD83D\uDCC5 ${formatDateRange(event.startDate, event.endDate)}\n\uD83D\uDCCD ${event.location}\n\nConfira mais detalhes: ${typeof window !== 'undefined' ? window.location.href : ''}`)}`}
+            href={`https://wa.me/?text=${encodeURIComponent(`*${event.title}*\n\uD83D\uDCC5 ${formatDateRange(event.startDate, event.endDate)}\n\uD83D\uDCCD ${event.location}\n\nConfira mais detalhes:\n${shareUrl}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg"

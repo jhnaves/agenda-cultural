@@ -7,6 +7,7 @@ interface EventCardProps {
 }
 
 const EventCard: React.FC<EventCardProps> = ({ event }) => {
+  console.log(`EventCard rendering: ${event.title}, slug: ${event.slug}, id: ${event.id}`);
   const formatDate = (date: Date) => {
     return new Intl.DateTimeFormat('pt-BR', {
       day: '2-digit',
@@ -25,7 +26,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   };
 
   return (
-    <a href={`/evento/${event.id}`} className="block group">
+    <a href={`/evento/${event.slug}`} className="block group">
       <div className="bg-white dark:bg-neutral-dark rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col">
         <img className="w-full h-48 object-cover" src={event.image} alt={event.title} />
         <div className="p-6 flex flex-col flex-grow">

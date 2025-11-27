@@ -7,6 +7,11 @@ interface UpcomingEventsProps {
 }
 
 const UpcomingEvents: React.FC<UpcomingEventsProps> = ({ events }) => {
+  console.log('UpcomingEvents received events:', events ? events.length : 'undefined');
+  if (events && events.length > 0) {
+    console.log('First event slug:', events[0].slug);
+    console.log('First event id:', events[0].id);
+  }
   return (
     <div>
       <h1 className="text-4xl font-extrabold text-neutral-darkest dark:text-white mb-2">Próximos Eventos</h1>

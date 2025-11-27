@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import EventDetail from '../../../pages/EventDetail';
+import { getEvents } from '../../utils/events';
+
+export async function getStaticPaths() {
+  const events = await getEvents();
+  return events.map(event => ({
+    params: { slug: event.slug },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+---
+
+<Layout 
+  title={event.title} 
+  description={event.description.substring(0, 160)} 
+  image={event.image}
+>
+  <EventDetail event={event} currentUrl={Astro.url.href} />
+</Layout>
