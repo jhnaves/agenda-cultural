@@ -5,7 +5,7 @@ import tailwind from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://agenda-cultural.vercel.app', // TODO: Replace with your actual domain
+  site: 'https://agenda-cultural.com',
   integrations: [react(), sitemap()],
   server: {
     host: true,
