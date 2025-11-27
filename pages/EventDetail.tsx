@@ -1,21 +1,20 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useEvents } from '../hooks/useEvents';
 import { CalendarIcon, ClockIcon, LocationMarkerIcon, WhatsAppIcon } from '../components/IconComponents';
+import { EventType } from '../types';
 
-const EventDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const { getEventById } = useEvents();
-  const event = getEventById(id);
+interface EventDetailProps {
+  event: EventType | undefined;
+}
 
+const EventDetail: React.FC<EventDetailProps> = ({ event }) => {
   if (!event) {
     return (
       <div className="text-center py-20">
         <h2 className="text-3xl font-bold text-neutral-darkest dark:text-white mb-4">Evento não encontrado</h2>
         <p className="text-gray-700 dark:text-neutral-light mb-6">O evento que você está procurando não existe ou foi removido.</p>
-        <Link to="/" className="bg-brand-primary text-white font-bold py-2 px-6 rounded-lg hover:bg-brand-secondary transition-colors duration-300">
+        <a href="/" className="bg-brand-primary text-white font-bold py-2 px-6 rounded-lg hover:bg-brand-secondary transition-colors duration-300">
           Voltar para a Agenda
-        </Link>
+        </a>
       </div>
     );
   }
@@ -59,7 +58,7 @@ const EventDetail: React.FC = () => {
 
         <div className="mt-8 pt-6 border-t border-gray-200 dark:border-neutral-light/20">
           <a
-            href={`https://wa.me/?text=${encodeURIComponent(`*${event.title}*\n\uD83D\uDCC5 ${formatDateRange(event.startDate, event.endDate)}\n\uD83D\uDCCD ${event.location}\n\nConfira mais detalhes: ${window.location.href}`)}`}
+            href={`https://wa.me/?text=${encodeURIComponent(`*${event.title}*\n\uD83D\uDCC5 ${formatDateRange(event.startDate, event.endDate)}\n\uD83D\uDCCD ${event.location}\n\nConfira mais detalhes: ${typeof window !== 'undefined' ? window.location.href : ''}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg"

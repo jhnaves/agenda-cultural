@@ -1,49 +1,11 @@
 ---
-import App from '../../App';
-import '../styles/tailwind.css';
----
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agenda Cultural</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RDSX4CW4P"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+import Layout from '../layouts/Layout.astro';
+import UpcomingEvents from '../../pages/UpcomingEvents';
+import { getUpcomingEvents } from '../utils/events';
 
-      gtag('config', 'G-3RDSX4CW4P');
-    </script>
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link rel="manifest" href="/manifest.webmanifest">
-    <meta name="theme-color" content="#8A2BE2">
-    <script>
-      (function(){
-        try {
-          var t = localStorage.getItem('theme');
-          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-          var useDark = t ? (t === 'dark') : prefersDark;
-          var root = document.documentElement;
-          root.classList.remove('light','dark');
-          root.classList.add(useDark ? 'dark' : 'light');
-        } catch (e) {}
-      })();
-    </script>
-    <style>
-      :root { font-family: Inter, sans-serif; }
-    </style>
-  </head>
-  <body>
-    <App client:only="react" />
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(() => {});
-        });
-      }
-    </script>
-  </body>
-</html>
+const events = await getUpcomingEvents();
+---
+
+<Layout title="Próximos Eventos">
+  <UpcomingEvents events={events} />
+</Layout>

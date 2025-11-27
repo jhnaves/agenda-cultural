@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PastEvents from '../../pages/PastEvents';
+import { getPastEvents } from '../utils/events';
+
+const events = await getPastEvents();
+---
+
+<Layout title="Eventos Passados">
+  <PastEvents events={events} />
+</Layout>

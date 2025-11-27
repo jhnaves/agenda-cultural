@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
 import { CalendarIcon, MenuIcon, XIcon } from './IconComponents';
 import ThemeToggle from './ThemeToggle';
+import { ThemeProvider } from '../context/ThemeContext';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  currentPath?: string;
+}
+
+const HeaderContent: React.FC<HeaderProps> = ({ currentPath = '/' }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
@@ -13,18 +17,15 @@ const Header: React.FC = () => {
     { to: '/cadastrar-evento', text: 'Cadastre um Evento' },
   ];
 
-  const linkClass = ({ isActive }: { isActive: boolean }): string =>
-    `block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-      isActive
-        ? 'bg-brand-primary text-white'
-        : 'text-neutral-darkest dark:text-neutral-light hover:bg-neutral-dark/10 dark:hover:bg-neutral-dark'
-    }`;
-  
-  const mobileLinkClass = ({ isActive }: { isActive: boolean }): string =>
-    `block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-      isActive
-        ? 'bg-brand-primary text-white'
-        : 'text-neutral-darkest dark:text-neutral-light hover:bg-neutral-dark/10 dark:hover:bg-neutral-dark'
+  const isActiveLink = (path: string) => {
+    if (path === '/' && currentPath !== '/') return false;
+    return currentPath === path || (path !== '/' && currentPath.startsWith(path));
+  };
+
+  const getLinkClass = (path: string) =>
+    `block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${isActiveLink(path)
+      ? 'bg-brand-primary text-white'
+      : 'text-neutral-darkest dark:text-neutral-light hover:bg-neutral-dark/10 dark:hover:bg-neutral-dark'
     }`;
 
   return (
@@ -32,20 +33,20 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0 flex items-center gap-2 text-neutral-darkest dark:text-white font-bold text-xl">
+            <a href="/" className="flex-shrink-0 flex items-center gap-2 text-neutral-darkest dark:text-white font-bold text-xl">
               <CalendarIcon className="h-8 w-8 text-brand-primary" />
               <span>Agenda Cultural</span>
-            </Link>
+            </a>
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-2">
               {navLinks.map((link) => (
-                <NavLink key={link.to} to={link.to} className={linkClass}>
+                <a key={link.to} href={link.to} className={getLinkClass(link.to)}>
                   {link.text}
-                </NavLink>
+                </a>
               ))}
               <div className="ml-4">
-                 <ThemeToggle />
+                <ThemeToggle />
               </div>
             </div>
           </div>
@@ -73,9 +74,9 @@ const Header: React.FC = () => {
         <div className="md:hidden" id="mobile-menu">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
-              <NavLink key={link.to} to={link.to} className={mobileLinkClass} onClick={() => setIsMenuOpen(false)}>
+              <a key={link.to} href={link.to} className={getLinkClass(link.to)} onClick={() => setIsMenuOpen(false)}>
                 {link.text}
-              </NavLink>
+              </a>
             ))}
           </div>
         </div>
@@ -83,5 +84,11 @@ const Header: React.FC = () => {
     </header>
   );
 };
+
+const Header: React.FC<HeaderProps> = (props) => (
+  <ThemeProvider>
+    <HeaderContent {...props} />
+  </ThemeProvider>
+);
 
 export default Header;

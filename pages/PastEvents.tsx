@@ -1,12 +1,12 @@
 import React from 'react';
 import EventCard from '../components/EventCard';
-import { useEvents } from '../hooks/useEvents';
 import { EventType } from '../types';
 
-const PastEvents: React.FC = () => {
-  const { getPastEvents } = useEvents();
-  const events: EventType[] = getPastEvents();
+interface PastEventsProps {
+  events: EventType[];
+}
 
+const PastEvents: React.FC<PastEventsProps> = ({ events }) => {
   return (
     <div>
       <h1 className="text-4xl font-extrabold text-neutral-darkest dark:text-white mb-2">Eventos Passados</h1>

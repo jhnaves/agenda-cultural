@@ -1,0 +1,82 @@
+---
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import '../styles/tailwind.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  currentPath?: string;
+}
+
+const { title, description = "Agenda Cultural - Fique por dentro dos eventos da sua cidade", image = "/og-image.jpg", currentPath = "" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Agenda Cultural</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#8A2BE2">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RDSX4CW4P"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3RDSX4CW4P');
+    </script>
+
+    <!-- Theme Script -->
+    <script is:inline>
+      (function(){
+        try {
+          var t = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var useDark = t ? (t === 'dark') : prefersDark;
+          var root = document.documentElement;
+          root.classList.remove('light','dark');
+          root.classList.add(useDark ? 'dark' : 'light');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="flex flex-col min-h-screen bg-neutral-light dark:bg-neutral-darkest font-sans text-neutral-dark dark:text-neutral-light transition-colors duration-300">
+    <Header client:load currentPath={Astro.url.pathname} />
+    <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>
+
+
