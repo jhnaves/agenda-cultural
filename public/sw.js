@@ -1,4 +1,4 @@
-const CACHE_NAME = 'agenda-cultural-v2';
+const CACHE_NAME = 'agenda-cultural-v3';
 const CACHE_DURATION = 4 * 60 * 60 * 1000; // 4 hours
 
 self.addEventListener('install', (event) => {

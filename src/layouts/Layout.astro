@@ -69,10 +69,21 @@ const { title, description = "Agenda Cultural - Fique por dentro dos eventos da 
       <slot />
     </main>
     <Footer />
-    <script>
+    <script is:inline>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(() => {});
+          // Only register service worker in production
+          if (import.meta.env.PROD) {
+            navigator.serviceWorker.register('/sw.js').catch(() => {});
+          } else {
+            // In development, unregister any existing service workers to avoid caching issues
+            navigator.serviceWorker.getRegistrations().then((registrations) => {
+              for (let registration of registrations) {
+                registration.unregister();
+                console.log('Service Worker unregistered in dev mode');
+              }
+            });
+          }
         });
       }
     </script>
