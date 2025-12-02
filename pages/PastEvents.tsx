@@ -7,14 +7,26 @@ interface PastEventsProps {
 }
 
 const PastEvents: React.FC<PastEventsProps> = ({ events }) => {
+  const [filteredEvents, setFilteredEvents] = React.useState<EventType[]>(events);
+
+  React.useEffect(() => {
+    // Client-side filtering to ensure we only show past events
+    const now = new Date();
+    const pastEvents = events.filter(event => {
+      const endDate = new Date(event.endDate);
+      return endDate < now;
+    });
+    setFilteredEvents(pastEvents);
+  }, [events]);
+
   return (
     <div>
       <h1 className="text-4xl font-extrabold text-neutral-darkest dark:text-white mb-2">Eventos Passados</h1>
       <p className="text-lg text-gray-700 dark:text-neutral-light mb-8">Relembre os eventos que já agitaram a cidade.</p>
 
-      {events.length > 0 ? (
+      {filteredEvents.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map(event => (
+          {filteredEvents.map(event => (
             <EventCard key={event.id} event={event} />
           ))}
         </div>
