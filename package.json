@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "npm run astro:dev",
+    "build": "npm run astro:build",
+    "preview": "npm run astro:preview",
     "preastro:dev": "node scripts/fetch-sheet.mjs",
     "astro:dev": "astro dev",
     "astro:build": "astro build",
