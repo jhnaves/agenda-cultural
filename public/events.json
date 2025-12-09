@@ -82,5 +82,19 @@
     "contactPhone": "",
     "contactEmail": "",
     "website": "https://www.instagram.com/prefguaxupe/p/DRek12mknqU/"
+  },
+  {
+    "id": "7",
+    "title": "Colônia de férias 2026",
+    "startDate": "2026-01-12T11:00:00.000Z",
+    "endDate": "2026-01-23T20:00:00.000Z",
+    "location": "R. Horácio Ferreira Lopes, 1012 - Nova Orquideas, Guaxupé",
+    "description": "Atividades lúdicas, brincadeiras e momentos cheios de alegria!\nGaranta a vaga do seu pequeno!",
+    "agenda": [],
+    "image": "https://agenda-cultural.com/images/2025/12/colonia_ferias.png",
+    "responsibleName": "Prefeitura de Guaxupé",
+    "contactPhone": "",
+    "contactEmail": "",
+    "website": "https://www.instagram.com/prefguaxupe"
   }
 ]
